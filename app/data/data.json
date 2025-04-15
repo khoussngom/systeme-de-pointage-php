@@ -1,0 +1,35 @@
+{
+    "Admin": [{
+
+            "role": "admin",
+            "prenom": "coach",
+            "nom": "wane",
+            "matricule": "wane1",
+            "gmail": "wane@gmail.com",
+            "password": "wane123",
+            "refenrentiel": "dev"
+        }
+
+    ],
+
+    "Apprenant": [{
+        "role": "apprenant",
+        "prenom": "khouss",
+        "nom": "ngom",
+        "matricule": "khoussngom",
+        "gmail": "khoussn@gmail.com",
+        "password": "khouss2000",
+        "refenrentiel": "dev"
+    }],
+    "Vigile": [{
+            "role": "vigile",
+            "prenom": "modou",
+            "nom": "ndiaye",
+            "matricule": "modoundiaye",
+            "gmail": "modou@gmail.com",
+            "password": "modouvigile"
+        }
+
+    ]
+
+}
