@@ -2,7 +2,7 @@
 <html lang="fr">
 <?php
 $url="http://".$_SERVER["HTTP_HOST"];
-?>    
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,24 +22,19 @@ $url="http://".$_SERVER["HTTP_HOST"];
         </div>
         <div class="seConnecter">Se Connecter</div>
         <?php if(!empty($message["mes"])): ?>
-          <div class="alert"><?= $message ?></div>
+          <div class="alert"><?= $message["mes"] ?></div>
         <?php endif; ?> 
             <form action="/login" method="post">
                 <div class="login">
                     <label for="login">Login</label>
-                    <?php if(empty($message["msgId"])): ?>
-                    <input type="text" class="entrer" id="login" name="login" placeholder="matricule ou email">
-                    <?php else: ?> 
-                        <div class="alert entrer"><?= $message["msgId"] ?></div>
-                    <?php endif; ?> 
+                   
+                    <input type="text" class=" <?php if(empty($message["msgId"])): ?> entrer <?php else: ?>entrer alert<?php endif; ?>  " id="login" name="login" placeholder="<?php if(empty($message["msgId"])): ?>matricule ou email<?php else: ?><?= $message["msgId"] ?><?php endif; ?> ">
+            
                 </div>
                 <div class="mdp">
                     <label for="password">Mot de passe</label>
-                    <?php if(empty($message["msgP"])): ?>
-                    <input type="password" class="entrer" id="password" name="password" placeholder="mot de passe">
-                    <?php else: ?> 
-                    <div class="alert entrer"><?= $message["msgP"]?></div>
-                    <?php endif; ?> 
+               
+                        <input type="password" class="<?php if(empty($message["msgP"])):?>entrer<?php else: ?>entrer alert<?php endif; ?>" id="password" name="password" placeholder="<?php if(empty($message["msgP"])): ?>mot de passe<?php else: ?><?= $message["msgP"] ?><?php endif; ?>" >
                 </div>
                 <div class="mdpOublie">
                     <a href="#">Mot de passe oublié ?</a>
