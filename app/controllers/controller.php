@@ -2,15 +2,20 @@
 declare(strict_types=1);
 namespace App\Controllers;
 
-$donnee= include(__DIR__ . "/../models/model.php");
-$con=include(__DIR__ . "/../services/connexion.service.php");
+use Chemins;
+
+
+$donnee = include __DIR__ . Chemins::Model->value;
+$con=include __DIR__ . Chemins::Service->value;
+
 $requete = $_SERVER["REQUEST_METHOD"];
 
 return [
     "login" => function(string $id,string $password) use($con,$donnee): void  {
       
         if ($con["connexion"](matricule:$id,email:$id,password:$password,database:$donnee["database"])) {
-            include __DIR__ . "/../views/acceuil/dashboard.php";
+            
+            include __DIR__ . Chemins::Dashboard->value;
         } else {
             $message =[];
             if(empty($id))
@@ -34,7 +39,8 @@ return [
             $message["mes"]=$msg;
             }
             extract($message);
-            include __DIR__ . "/../views/login/connexion.html.php";
+            
+            include __DIR__ . Chemins::ViewLogin->value;
         }
     },
 ];

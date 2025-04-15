@@ -158,6 +158,10 @@ form {
     width: 100%;
 }
 
+.masque {
+    -webkit-text-security: square;
+}
+
 .entrer {
     position: relative;
     display: flex;

@@ -1,22 +1,24 @@
 <?php
 declare(strict_types=1);
+namespace App\Route;
+use Chemins;
 
-$model = include __DIR__.'/../models/model.php';
-$controller = include __DIR__.'/../controllers/controller.php';
+$model = include __DIR__.Chemins::Model->value;
+$controller = include __DIR__.Chemins::Controller->value;
 
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 match (true) {
-    $request === '/login' && $method === 'GET' => include __DIR__.'/../views/login/connexion.html.php',
+    $request === '/login' && $method === 'GET' => include __DIR__.Chemins::ViewLogin->value,
 
     $request === '/login' && $method === 'POST' => $controller['login'](
         id: $_POST['login'] ?? '',
         password: $_POST['password'] ?? ''
     ),
 
-    $request === '/dashboard' && isset($_SESSION['user']) => include __DIR__.'/../views/acceuil/dashboard.html.php',
+    $request === '/dashboard' && isset($_SESSION['user']) => include __DIR__.Chemins::Dashboard->value,
 
-    default => include __DIR__.'/../views/login/connexion.html.php',
+    default => include __DIR__.Chemins::ViewLogin->value,
 };
