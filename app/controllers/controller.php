@@ -14,7 +14,10 @@ return [
     "login" => function(string $id,string $password) use($con,$donnee): void  {
       
         if ($con["connexion"](matricule:$id,email:$id,password:$password,database:$donnee["database"])) {
-            
+            $_SESSION['user'] = [
+                'id' => $id,
+                'password' => $password,
+            ];
             include __DIR__ . Chemins::Dashboard->value;
         } else {
             $message =[];

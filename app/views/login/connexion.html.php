@@ -43,7 +43,7 @@ $url="http://".$_SERVER["HTTP_HOST"];
                     <a href="#"><?=Textes::MDPOublie->value;?></a>
                 </div>
                 <div class="bc">
-                    <input class="btnSeConnecter" type="submit" value="<?=Textes::SeConnecter->value;?>">
+                   <input class="btnSeConnecter"  type="submit" value="<?=Textes::SeConnecter->value;?>">   
                 </div>
             </form>
       
