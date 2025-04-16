@@ -1,2 +1,1 @@
 <?php
-// Validation des données

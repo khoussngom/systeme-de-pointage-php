@@ -11,6 +11,7 @@ $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 match (true) {
+
     $request === '/login' && $method === 'GET' => include __DIR__.Chemins::ViewLogin->value,
 
     $request === '/layout' && $method === 'GET' => include __DIR__.Chemins::Layout->value,
@@ -28,3 +29,4 @@ match (true) {
 
     default => include __DIR__.Chemins::ViewLogin->value,
 };
+    

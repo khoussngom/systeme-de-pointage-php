@@ -1,9 +1,15 @@
 :root {
     --Orange: rgb(255, 115, 0);
+    --RougeClair: rgba(255, 0, 0, 0.164);
     --bleuCiel: rgb(235, 235, 238);
     --VERT: rgb(0, 158, 132);
+    --VERTClair: rgba(124, 202, 189, 0.212);
     --White: white;
     --Noir: black;
+    --NoirClair: rgb(209, 209, 209);
+    --Rouge: rgb(161, 0, 0);
+    --NoirsClair: rgba(0, 0, 0, 0.63);
+    --NoirSuperClair: rgba(56, 56, 56, 0.055);
 }
 
 * {
@@ -19,7 +25,7 @@
     position: relative;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     justify-content: space-between;
     align-items: center;
     padding: auto;
@@ -46,6 +52,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 20px;
 }
 
 .gauche1 {
@@ -174,12 +181,6 @@
     align-items: center;
 }
 
-.listeProm>div {
-    background-color: var(--White);
-    width: 32%;
-    height: 50%;
-}
-
 .L2 div {
     background-color: var(--Orange);
     width: 23%;
@@ -239,4 +240,147 @@
     border-radius: 50%;
     height: 48%;
     width: 110%;
+}
+
+.cadreProm {
+    background-color: var(--White);
+    border-radius: 10px 10px 10px 10px;
+    width: 32%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.onOff {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 15%;
+    position: left;
+    width: 30%;
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: -65%;
+    border-radius: 25px 25px 25px 25px;
+    padding: auto;
+    background-color: transparent;
+    border: solid 1px var(--NoirClair);
+    gap: 3px;
+}
+
+.off {
+    flex: 2;
+    height: 70%;
+    border-radius: 15px 15px 15px 15px;
+    margin-left: 10px;
+    background-color: var(--RougeClair);
+    font-size: 10px;
+    color: var(--Rouge);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.on {
+    flex: 1;
+    height: 80%;
+    border-radius: 100%;
+    background-color: var(--VERTClair);
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.on img {
+    margin: auto;
+    width: 80%;
+    height: 60%;
+}
+
+.infProm {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.PhotPro {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.PhotPro img {
+    border-radius: 100%;
+    width: 50%;
+    height: 80%;
+    margin: auto;
+}
+
+.infdate {
+    flex: 3;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.date1 {
+    color: var(--NoirsClair);
+}
+
+.infb {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nbAppr {
+    height: 15%;
+    width: 80%;
+    background-color: var(--NoirSuperClair);
+    border-radius: 15px 15px 15px 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.nbAppr span {
+    margin-left: 10px;
+}
+
+.vDet {
+    flex: 1;
+    height: 100%;
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--Orange);
+}
+
+.nbAppr i {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.trait {
+    height: 1%;
+    width: 100%;
+    background-color: var(--NoirClair);
 }

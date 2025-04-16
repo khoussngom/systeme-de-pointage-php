@@ -22,7 +22,7 @@ $grillePromotion= function (){
             <div class="Ligne1">
                 <div class="gauche1">
                     <div class="Promo">Promotion</div>
-                    <div class="gerProm">Gerer les promotions de l'ecole</div>
+                    <div class="gerProm">Gerer les promotions de l'école</div>      
                 </div>
                 <div class="droite1"><p> + Ajouter une promotions</p></div>
             </div>
@@ -72,12 +72,86 @@ $grillePromotion= function (){
                 <div class="Liste1">Liste</div>
             </div>
             <div class="listeProm">
-                <div class="cadreProm"></div>
-                <div class="cadreProm"></div>
-                <div class="cadreProm"></div>
-                <div class="cadreProm"></div>
-                <div class="cadreProm"></div>
-                
+                <div class="cadreProm">
+                        <div class="onOff">
+                            <div class="off">Inactive</div>
+                            <div class="on"><img src="<?=Chemins::CheminAssetImage->value.'/power-button.png'?>" alt=""></div>
+                        </div>
+                        <div class="infProm">
+                            <div class="PhotPro"><img src="<?=Chemins::CheminAssetImage->value.'/imagesp7.jpeg'?>" alt=""></div>
+                            <div class="infdate">
+                                <div class="infb">Promotion 2025</div>
+                                <div class="date1">04/02/2025 - 04/12/2025</div>
+                            </div>
+                        </div>
+                        <div class="nbAppr"><i class="fa fa-user"></i> <span>2 apprenants</span></div>
+                        <div class="trait"></div>
+                        <div class="vDet"><span>voir details ></span></div>
+                </div>
+                <div class="cadreProm">
+                        <div class="onOff">
+                            <div class="off">Inactive</div>
+                            <div class="on"><img src="<?=Chemins::CheminAssetImage->value.'/power-button.png'?>" alt=""></div>
+                        </div>
+                        <div class="infProm">
+                            <div class="PhotPro"><img src="<?=Chemins::CheminAssetImage->value.'/imagesp7.jpeg'?>" alt=""></div>
+                            <div class="infdate">
+                                <div class="infb">Promotion 2025</div>
+                                <div class="date1">04/02/2025 - 04/12/2025</div>
+                            </div>
+                        </div>
+                        <div class="nbAppr"><i class="fa fa-user"></i> <span>2 apprenants</span></div>
+                        <div class="trait"></div>
+                        <div class="vDet"><span>voir details ></span></div>
+                </div>
+                <div class="cadreProm">
+                        <div class="onOff">
+                            <div class="off">Inactive</div>
+                            <div class="on"><img src="<?=Chemins::CheminAssetImage->value.'/power-button.png'?>" alt=""></div>
+                        </div>
+                        <div class="infProm">
+                            <div class="PhotPro"><img src="<?=Chemins::CheminAssetImage->value.'/imagesp7.jpeg'?>" alt=""></div>
+                            <div class="infdate">
+                                <div class="infb">Promotion 2025</div>
+                                <div class="date1">04/02/2025 - 04/12/2025</div>
+                            </div>
+                        </div>
+                        <div class="nbAppr"><i class="fa fa-user"></i> <span>2 apprenants</span></div>
+                        <div class="trait"></div>
+                        <div class="vDet"><span>voir details ></span></div>
+                </div>
+                <div class="cadreProm">
+                        <div class="onOff">
+                            <div class="off">Inactive</div>
+                            <div class="on"><img src="<?=Chemins::CheminAssetImage->value.'/power-button.png'?>" alt=""></div>
+                        </div>
+                        <div class="infProm">
+                            <div class="PhotPro"><img src="<?=Chemins::CheminAssetImage->value.'/imagesp7.jpeg'?>" alt=""></div>
+                            <div class="infdate">
+                                <div class="infb">Promotion 2025</div>
+                                <div class="date1">04/02/2025 - 04/12/2025</div>
+                            </div>
+                        </div>
+                        <div class="nbAppr"><i class="fa fa-user"></i> <span>2 apprenants</span></div>
+                        <div class="trait"></div>
+                        <div class="vDet"><span>voir details ></span></div>
+                </div>
+                <div class="cadreProm">
+                        <div class="onOff">
+                            <div class="off">Inactive</div>
+                            <div class="on"><img src="<?=Chemins::CheminAssetImage->value.'/power-button.png'?>" alt=""></div>
+                        </div>
+                        <div class="infProm">
+                            <div class="PhotPro"><img src="<?=Chemins::CheminAssetImage->value.'/imagesp7.jpeg'?>" alt=""></div>
+                            <div class="infdate">
+                                <div class="infb">Promotion 2025</div>
+                                <div class="date1">04/02/2025 - 04/12/2025</div>
+                            </div>
+                        </div>
+                        <div class="nbAppr"><i class="fa fa-user"></i> <span>2 apprenants</span></div>
+                        <div class="trait"></div>
+                        <div class="vDet"><span>voir details ></span></div>
+                </div>
             </div>
     </div>
 </div>
