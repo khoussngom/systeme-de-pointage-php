@@ -19,7 +19,8 @@
         "matricule": "khoussngom",
         "gmail": "khoussn@gmail.com",
         "password": "khouss2000",
-        "refenrentiel": "dev"
+        "refenrentiel": "dev",
+        "promo": "p7"
     }],
     "Vigile": [{
             "role": "vigile",
@@ -30,6 +31,12 @@
             "password": "modouvigile"
         }
 
-    ]
+    ],
+    "Promotion": [{
+        "MatriculePromo": "p7",
+        "filiere": "dev",
+        "debut": "06/02/2025",
+        "fin": ""
+    }]
 
 }
