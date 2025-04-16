@@ -1,5 +1,5 @@
 :root {
-    --orange: rgb(255, 123, 0);
+    --orange: rgb(255, 115, 0);
     --noir: #000;
     --blanc: #fff;
     --police: Arial, Helvetica, sans-serif;
@@ -206,6 +206,7 @@ a {
     width: 100%;
     height: 80%;
     font-weight: 600;
+    border-radius: 15px 15px 15px;
     border: none;
     color: var(--blanc);
 }

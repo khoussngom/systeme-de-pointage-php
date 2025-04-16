@@ -9,14 +9,14 @@ $url="http://".$_SERVER["HTTP_HOST"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= $url."/assets/css/login.css" ?>">
-    <title>Document</title>
+    <link rel="stylesheet" href="<?= $url.Chemins::CheminAssetCss->value."/login.css"; ?>">
+    <title>Connexion</title>
 </head>
 <body>
     <div class="container">
 
         <div class="entSonatel">
-           <img src="<?= $url."/assets/images/logo_odc.png"?>" alt="logo sonatel">
+           <img src="<?= $url.Chemins::CheminAssetImage->value."/logo_odc.png"?>" alt="logo sonatel">
          </div>
        
         <div class="mBienvenue">

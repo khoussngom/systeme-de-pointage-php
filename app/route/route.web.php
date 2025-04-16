@@ -13,6 +13,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 match (true) {
     $request === '/login' && $method === 'GET' => include __DIR__.Chemins::ViewLogin->value,
 
+    $request === '/layout' && $method === 'GET' => include __DIR__.Chemins::Layout->value,
+
+
     $request === '/logout' && $method === 'POST'=> include __DIR__.Chemins::Logout->value,
 
     $request === '/login' && $method === 'POST' => $controller['login'](

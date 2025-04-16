@@ -18,7 +18,7 @@ return [
                 'id' => $id,
                 'password' => $password,
             ];
-            include __DIR__ . Chemins::Dashboard->value;
+            include __DIR__ . Chemins::Layout->value;
         } else {
             $message =[];
             if(empty($id))
