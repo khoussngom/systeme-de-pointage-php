@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['user'])) {
-    header("Location: /login"); 
+    header("Location: /login");
     exit();
 }
 ?>
@@ -30,7 +30,7 @@ $path = "http://" . $_SERVER["HTTP_HOST"]
                     <img src="<?= $url .Chemins::CheminAssetImage->value."/logo_odc.png"?>" alt="logo sonatel">
                 </div>
                 <div class="Prom">
-                <h5>Promotion - 2025</h5> 
+                <h5>Promotion - 2025</h5>
                 </div>
             </div>
         <div class="menu">
