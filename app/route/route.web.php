@@ -15,7 +15,8 @@ match (true) {
 
     $request === '/layout' && $method === 'GET' => include __DIR__.Chemins::Layout->value,
 
-
+    $request === '/promotion' && $method === 'GET' => include __DIR__.Chemins::Promotion->value,
+    
     $request === '/logout' && $method === 'POST'=> include __DIR__.Chemins::Logout->value,
 
     $request === '/login' && $method === 'POST' => $controller['login'](

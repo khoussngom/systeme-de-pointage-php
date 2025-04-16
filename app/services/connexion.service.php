@@ -4,10 +4,10 @@ namespace App\Services;
 
 return [
 'connexion' => function(string $matricule, string $password, string $email, array $database): bool {
-    $found = false;
+    $trouve = false;
 
-    array_walk($database, function($users) use ($matricule, $password, $email, &$found) {
-        array_walk($users, function($user) use ($matricule, $password, $email, &$found) {
+    array_walk($database, function($users) use ($matricule, $password, $email, &$trouve) {
+        array_walk($users, function($user) use ($matricule, $password, $email, &$trouve) {
             if (
                 (
                     (isset($user['matricule']) && $user['matricule'] === $matricule) ||
@@ -15,12 +15,12 @@ return [
                 ) &&
                 (isset($user['password']) && $user['password'] === $password)
             ) {
-                $found = true;
+                $trouve = true;
             }
         });
     });
 
-    return $found;
+    return $trouve;
 }
 ]
 ?>

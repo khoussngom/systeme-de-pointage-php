@@ -1,10 +1,16 @@
 <?php
 if (!isset($_SESSION['user'])) {
-    header("Location: /login");
+    header("Location: /login"); 
     exit();
 }
 ?>
-<?php include __DIR__ ."/../../enums/messages.php"; ?>
+
+<?php 
+$layout = function($contenu){
+    ob_start();
+include __DIR__ ."/../../enums/messages.php"; 
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,38 +42,38 @@ $path = "http://" . $_SERVER["HTTP_HOST"]
         <div class="menu">
                 <div class="trait"></div>
                 <div class="Tb">
-                        <div></div>
+                        <div><i class="fa-solid fa-house"></i></div>
                 <div>Tableau de bord</div>
                 </div>
                 <div class="Pr">
-                    <div></div>
+                    <div><i class="fa-regular fa-folder"></i></div>
                     <div>Promotions</div>
             </div>
             <div class="Ref">
-                        <div></div>
+                        <div><i class="fa-solid fa-book"></i></i></div>
                 <div>Référentiels</div>
             </div>
             <div class="Ap">
-                        <div></div>
+                        <div><i class="fa-regular fa-user"></i></div>
                 <div>Apprenants</div>
             </div>
             <div class="Ges">
-                <div></div>
+                <div><i class="fa-solid fa-file"></i></div>
                 <div>Gestion des présences</div>
             </div>
             <div class="ki">
-                <div></div>
+                <div><i class="fa-solid fa-laptop"></i></div>
                 <div>Kits & Laptops</div>
             </div>
             <div class="Ra">
-                <div></div>
+                <div><i class="fa-solid fa-signal"></i></div>
                 <div>Rapports & stats</div>
             </div>
         </div>
         <div class="saysay"></div>
         <div class="form">
             <form action="/logout" method="post">
-                <button type="submit" class="decon"> Déconnexion</button>
+                <button type="submit" class="decon"> <i class="fa-solid fa-right-from-bracket"></i>  Déconnexion</button>
             </form>
         </div>
     </div>
@@ -88,9 +94,16 @@ $path = "http://" . $_SERVER["HTTP_HOST"]
                 </div>
             </div>
         </div>
-        <div class="variant"></div>
+        <div class="variant">
+             <?=  $contenu ?>
+        </div>
     </div>
     </div>
 </body>
 
 </html>
+
+<?php 
+ return ob_get_clean();
+};
+?>

@@ -1,9 +1,9 @@
 <?php
 enum Chemins: string {
     case Dashboard = '/../views/acceuil/dashboard.php';
-    case gPromotion = '/../views/acceuil/grille.promotion.views.pĥp';
     case ViewLogin = '/../views/login/connexion.html.php';
     case Layout = '/../views/layout/base.layout.php';
+    case Promotion = '/../views/acceuil/promo.php';
     case Logout = '/../views/login/logout.php';
     case Model     = '/../models/model.php';
     case Service  =  '/../services/connexion.service.php';
