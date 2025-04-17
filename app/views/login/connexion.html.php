@@ -3,7 +3,7 @@
 <html lang="fr">
 <?php
 $url="http://".$_SERVER["HTTP_HOST"];
-
+use Textes;
 
 ?>
 <head>

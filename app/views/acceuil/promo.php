@@ -29,14 +29,14 @@ return function ($infoPromo) {
         <div class="L2">
             <div class="stat1">
                 <div class="col">
-                    <div class="Cbold">0</div>
+                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrAppr'])?></div>
                     <div class="Ptext">Apprenant</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-users"></i></div>
             </div>
             <div class="stat2">
                 <div class="col">
-                    <div class="Cbold">5</div>
+                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrRef']) ?> </div>
                     <div class="Ptext">Référentiels</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-book"></i></div>
@@ -50,7 +50,7 @@ return function ($infoPromo) {
             </div>
             <div class="stat4">
                 <div class="col">
-                    <div class="Cbold">5</div>
+                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrProm']) ?> </div>
                     <div class="Ptext">Total Promotions</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-file"></i></div>
@@ -111,17 +111,24 @@ return function ($infoPromo) {
 <div class="popbi">
     <div class="popup">
         <h2>Créer une nouvelle promotion</h2>
+        <?php
+           
+            if (isset($_SESSION['form_message'])) {
+                echo '<div class="error-message">'.htmlspecialchars($_SESSION['form_message']).'</div>';
+                unset($_SESSION['form_message']); 
+            }
+        ?>
         <form action="/promotion" method="post" enctype="multipart/form-data">
             <label for="nomPromo">Nom de la promotion</label>
             <input type="text" id="nom" name="nomPromo" placeholder="Ex: Promotion 2025">
         <div class="datePopup">
             <div class="popuDd">
                 <label for="debut">Date de début</label>
-                <input type="date" id="debut" name="date_debut">
+                <input type="text" id="debut" name="date_debut" placeholder="Ex:21/03/2000"> 
             </div>
             <div class="popuDf">
                 <label for="fin">Date de fin</label>
-                <input type="date" id="fin" name="date_fin">
+                <input type="text" id="fin" name="date_fin" placeholder="Ex:21/03/2000">
             </div>
         </div>
         <label for="photo">Photo de la promotion</label>

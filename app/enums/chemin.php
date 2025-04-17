@@ -9,9 +9,9 @@ enum Chemins: string {
     case Model     = '/../models/model.php';
     case Service  =  '/../services/connexion.service.php';
     case ServicePromo  =  '/../services/service.promo.php';
+    case Validator  =  '/../services/validator.service.php';
     case Controller= '/../controllers/controller.php';
     case PromoController= '/../controllers/promo.controller.php';
-
     case Routes = '/../app/route/route.web.php';
     case DataJson = './../data/data.json';
     case CheminAssetCss = '/assets/css';

@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Chemins;
-
+use Textes;
 
 $donnee = include __DIR__ . Chemins::Model->value;
 $con=include __DIR__ . Chemins::Service->value;
@@ -24,11 +24,11 @@ return [
         } else {
             $message =[];
             $errors = [
-                'msgId' => empty($id) ? "login obligatoire" : null,
-                'msgP'  => empty($password) ? "password obligatoire" : null,
+                'msgId' => empty($id) ? Textes::LogObli->value : null,
+                'msgP'  => empty($password) ? Textes::PasObli->value: null,
             ];
             
-            $message = array_filter($errors) ?: ['mes' => 'login ou mot de passe invalide'];
+            $message = array_filter($errors) ?: ['mes' => Textes::LogPasInv->value];
             
             extract($message);
             

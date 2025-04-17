@@ -1,2 +1,1 @@
 <?php
-// Gestion des session

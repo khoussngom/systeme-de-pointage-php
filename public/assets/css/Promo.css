@@ -513,39 +513,9 @@
     color: var(--Orange);
 }
 
-
-/* 
-.Gril,
-.Liste1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--White);
-    color: var(--Noir);
-    text-decoration: none;
+.error-message {
+    color: red;
     font-weight: bold;
-} */
-
-
-/* 
-
-.Gril {
-    background-color: var(--White);
+    margin: 10px 0;
+    text-align: center;
 }
-
-.Liste1 {
-    background-color: var(--White);
-}
-
-
-
-
-#grille:target {
-    background-color: var(--Orange);
-    color: var(--White);
-}
-
-#liste:target {
-    background-color: var(--Orange);
-    color: var(--White);
-} */

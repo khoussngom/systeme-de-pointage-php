@@ -4,7 +4,7 @@ return[
     
         $date = str_replace('/', '', $date);
     
-      
+    
         if (strlen($date) !== 8 || !ctype_digit($date)) {
             return false;
         }
@@ -16,6 +16,4 @@ return[
     
         return checkdate($mois, $jour, $annee);
     },
-    
-    
 ];

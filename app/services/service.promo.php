@@ -21,5 +21,32 @@ return [
     },
     'afficherAllPromo' => fn($database) => $database['Promotion'],
 
+    'nbrFilieres' => function(array $database) {
+    $filieres = array_map(function($promo) {
+        return strtolower(trim($promo['filiere']));
+    }, $database['Promotion']);
+
+    $filieres = array_unique($filieres);
+
+    return count($filieres);
+},
+
+    'nbrPromo'=>function(array $database) {
+        $Promo = array_map(function($promo) {
+            return $promo['MatriculePromo'];
+    }, $database['Promotion']);
+
+        return count($Promo);
+    },
+
+    'nbrAppr'=>function(array $database) {
+       $appr= array_map(function($promo) {
+            return $promo['matricule'];
+        }, $database['Apprenant']);
+        return count($appr);
+    },
+        
+
+
 ];
 ?>

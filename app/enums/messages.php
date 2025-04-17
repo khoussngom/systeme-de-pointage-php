@@ -1,4 +1,5 @@
 <?php
+
 enum Textes: string {
     case Bienvenue1 = 'Bienvenue sur';
     case ECSA = 'Ecole du code Sonatel Academy';
@@ -11,6 +12,13 @@ enum Textes: string {
     case Prom='Promotion';
     case gerProm = 'Gerer les promotions de l\'école';
     case AjoutProm = '+ Ajouter une promotion';
+    case AjoutSuccess = 'Ajouté avec succès';
+    case TLO ='Tous les champs sont obligatoires';
+    case LogObli ='login obligatoire';
+    case PasObli = 'password obligatoire';
+    case LogPasInv = 'login ou mot de passe invalide';
+
+    case DatInv='Date invalide';
 }
 
 

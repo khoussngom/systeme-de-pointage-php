@@ -1,40 +1,33 @@
 {
-    "Admin": [
-        {
-            "role": "admin",
-            "prenom": "coach",
-            "nom": "wane",
-            "matricule": "wane1",
-            "gmail": "wane@gmail.com",
-            "password": "wane123",
-            "ref": "dev"
-        }
-    ],
-    "Apprenant": [
-        {
-            "role": "apprenant",
-            "prenom": "khouss",
-            "nom": "ngom",
-            "matricule": "khoussngom",
-            "gmail": "khoussn@gmail.com",
-            "password": "khouss2000",
-            "ref": "dev",
-            "promo": "prmotion 2025"
-        }
-    ],
-    "Vigile": [
-        {
-            "role": "vigile",
-            "prenom": "modou",
-            "nom": "ndiaye",
-            "matricule": "modoundiaye",
-            "gmail": "modou@gmail.com",
-            "password": "modouvigile"
-        }
-    ],
-    "Promotion": [
-        {
-            "MatriculePromo": "pormotion 2025",
+    "Admin": [{
+        "role": "admin",
+        "prenom": "coach",
+        "nom": "wane",
+        "matricule": "wane1",
+        "gmail": "wane@gmail.com",
+        "password": "wane123",
+        "ref": "dev"
+    }],
+    "Apprenant": [{
+        "role": "apprenant",
+        "prenom": "khouss",
+        "nom": "ngom",
+        "matricule": "khoussngom",
+        "gmail": "khoussn@gmail.com",
+        "password": "khouss2000",
+        "ref": "dev",
+        "promo": "prmotion 2025"
+    }],
+    "Vigile": [{
+        "role": "vigile",
+        "prenom": "modou",
+        "nom": "ndiaye",
+        "matricule": "modoundiaye",
+        "gmail": "modou@gmail.com",
+        "password": "modouvigile"
+    }],
+    "Promotion": [{
+            "MatriculePromo": "promotion 2025",
             "filiere": "dev-web",
             "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.51.16 (2).jpeg",
             "debut": "2025-02-06",
