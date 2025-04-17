@@ -8,6 +8,7 @@ use Chemins;
 $donnee = include __DIR__ . Chemins::Model->value;
 $con=include __DIR__ . Chemins::Service->value;
 
+
 $requete = $_SERVER["REQUEST_METHOD"];
 
 return [
@@ -46,4 +47,5 @@ return [
             include __DIR__ . Chemins::ViewLogin->value;
         }
     },
+
 ];

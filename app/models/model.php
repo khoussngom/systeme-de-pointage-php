@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Chemins;
 
-$BdD= file_get_contents(__DIR__.Chemins::DataJson->value);
-$BdD= json_decode($BdD, true);
+$databaseFile = __DIR__ . Chemins::DataJson->value;
+
+$database = json_decode(file_get_contents($databaseFile), true);
 
 return [
-    "database" =>$BdD
+    "database" => $database,
+    "databaseFile" => $databaseFile  
 ];

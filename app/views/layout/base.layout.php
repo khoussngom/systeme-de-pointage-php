@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 ?>
 
 <?php 
-$layout = function($contenu){
+return function($contenu){
     ob_start();
 include __DIR__ ."/../../enums/messages.php"; 
 
@@ -33,7 +33,7 @@ $path = "http://" . $_SERVER["HTTP_HOST"]
         <div class="sidebar">
             <div class="logPRO">
                 <div class="log">
-                    <img src="<?= $url .Chemins::CheminAssetImage->value."/logo_odc.png"?>" alt="logo sonatel">
+                    <img src="<?= $path.Chemins::CheminAssetImage->value."/logo_odc.png"?>" alt="logo sonatel">
                 </div>
                 <div class="Prom">
                 <h5>Promotion - 2025</h5>

@@ -1,28 +1,29 @@
 {
-    "Admin": [{
-
+    "Admin": [
+        {
             "role": "admin",
             "prenom": "coach",
             "nom": "wane",
             "matricule": "wane1",
             "gmail": "wane@gmail.com",
             "password": "wane123",
-            "refenrentiel": "dev"
+            "ref": "dev"
         }
-
     ],
-
-    "Apprenant": [{
-        "role": "apprenant",
-        "prenom": "khouss",
-        "nom": "ngom",
-        "matricule": "khoussngom",
-        "gmail": "khoussn@gmail.com",
-        "password": "khouss2000",
-        "refenrentiel": "dev",
-        "promo": "p7"
-    }],
-    "Vigile": [{
+    "Apprenant": [
+        {
+            "role": "apprenant",
+            "prenom": "khouss",
+            "nom": "ngom",
+            "matricule": "khoussngom",
+            "gmail": "khoussn@gmail.com",
+            "password": "khouss2000",
+            "ref": "dev",
+            "promo": "prmotion 2025"
+        }
+    ],
+    "Vigile": [
+        {
             "role": "vigile",
             "prenom": "modou",
             "nom": "ndiaye",
@@ -30,13 +31,42 @@
             "gmail": "modou@gmail.com",
             "password": "modouvigile"
         }
-
     ],
-    "Promotion": [{
-        "MatriculePromo": "p7",
-        "filiere": "dev",
-        "debut": "06/02/2025",
-        "fin": ""
-    }]
-
+    "Promotion": [
+        {
+            "MatriculePromo": "pormotion 2025",
+            "filiere": "dev-web",
+            "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.51.16 (2).jpeg",
+            "debut": "2025-02-06",
+            "fin": "2025-11-17"
+        },
+        {
+            "MatriculePromo": "promo 2025",
+            "filiere": "Dev-web",
+            "photoPromo": "\/3d-render-grunge-room-interior-with-foggy-atmosphere.jpg",
+            "debut": "2024-01-01",
+            "fin": "2024-11-17"
+        },
+        {
+            "MatriculePromo": "Promo 2020",
+            "filiere": "Ref-digital",
+            "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.51.16 (1).jpeg",
+            "debut": "2020-02-17",
+            "fin": "2020-11-17"
+        },
+        {
+            "MatriculePromo": "Promo 2019",
+            "filiere": "dev-web",
+            "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.51.16 (1).jpeg",
+            "debut": "2019-01-17",
+            "fin": "2019-11-17"
+        },
+        {
+            "MatriculePromo": "2021",
+            "filiere": "dev-data",
+            "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.54.31.jpeg",
+            "debut": "2021-01-17",
+            "fin": "2025-04-25"
+        }
+    ]
 }
