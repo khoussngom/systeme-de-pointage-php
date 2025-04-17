@@ -6,7 +6,7 @@
         "matricule": "wane1",
         "gmail": "wane@gmail.com",
         "password": "wane123",
-        "ref": "dev"
+        "ref": "dev-web"
     }],
     "Apprenant": [{
         "role": "apprenant",
@@ -15,8 +15,8 @@
         "matricule": "khoussngom",
         "gmail": "khoussn@gmail.com",
         "password": "khouss2000",
-        "ref": "dev",
-        "promo": "prmotion 2025"
+        "ref": "dev-web",
+        "promo": "promotion 2025"
     }],
     "Vigile": [{
         "role": "vigile",

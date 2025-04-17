@@ -1,7 +1,7 @@
 <?php 
 include __DIR__ ."/../layout/base.layout.php";
 
-return function ($infoPromo) {
+return function ($data) {
     ob_start();
     $urlCss = "http://" . $_SERVER["HTTP_HOST"];
 ?>
@@ -29,14 +29,14 @@ return function ($infoPromo) {
         <div class="L2">
             <div class="stat1">
                 <div class="col">
-                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrAppr'])?></div>
+                    <div class="Cbold"><?= htmlspecialchars($data['nbrAppr'])?></div>
                     <div class="Ptext">Apprenant</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-users"></i></div>
             </div>
             <div class="stat2">
                 <div class="col">
-                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrRef']) ?> </div>
+                    <div class="Cbold"><?= htmlspecialchars($data['nbrRef']) ?> </div>
                     <div class="Ptext">Référentiels</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-book"></i></div>
@@ -50,7 +50,7 @@ return function ($infoPromo) {
             </div>
             <div class="stat4">
                 <div class="col">
-                    <div class="Cbold"><?= htmlspecialchars($infoPromo['nbrProm']) ?> </div>
+                    <div class="Cbold"><?= htmlspecialchars($data['nbrProm']) ?> </div>
                     <div class="Ptext">Total Promotions</div>
                 </div>
                 <div class="icNite"><i class="fa-solid fa-file"></i></div>
@@ -73,8 +73,8 @@ return function ($infoPromo) {
             <div class="Liste1">Liste</div>
         </div>
     <div class="listeProm">
-        <?php if (!empty($infoPromo)): ?>
-            <?php foreach ($infoPromo as $promo): ?>
+        <?php if (!empty($data)): ?>
+            <?php foreach ($data['Promotion'] as $promo): ?>
                 <div class="cadreProm">
                     <div class="onOff">
                         <div class="off"><?= htmlspecialchars($promo['etat'] ?? 'Inactive') ?></div>

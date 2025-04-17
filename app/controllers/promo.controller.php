@@ -32,7 +32,7 @@ return [
         if ($condition) {
             $_SESSION['form_message'] = $message;
             header("Location:/promotion#form-popup");
-          
+            session_unset();
             exit;
         }
     });
@@ -54,35 +54,38 @@ return [
         file_put_contents($databaseFile, json_encode($database, JSON_PRETTY_PRINT));
         $_SESSION['form_message'] = Textes::AjoutSuccess->value;
         header("Location:/promotion");
+        session_unset();
         exit;
     }
 },
-
 
 "affichageAllPromo" => function() use ($servicePromo) {
     $donnee = include __DIR__ . Chemins::Model->value; 
     $database = $donnee['database'];
     
-  
     $infoPromo = $servicePromo['afficherAllPromo']($database);
 
   
-    $infoPromo = array_filter($infoPromo, function($promo) {
+    $promotions = array_filter($infoPromo, function($promo) {
         return 
             isset($promo['MatriculePromo'], $promo['filiere'], $promo['photoPromo'], $promo['debut'], $promo['fin']) &&
-            !empty($promo['MatriculePromo']) && !empty($promo['filiere']) &&!empty($promo['photoPromo']) && !empty($promo['debut']) && !empty($promo['fin']);
+            !empty($promo['MatriculePromo']) && !empty($promo['filiere']) && !empty($promo['photoPromo']) && !empty($promo['debut']) && !empty($promo['fin']);
     });
 
-  
-    $infoPromo['nbrRef'] = $servicePromo['nbrFilieres'](database: $database);
-    $infoPromo['nbrProm'] = $servicePromo['nbrPromo'](database: $database);
-    $infoPromo['nbrAppr'] = $servicePromo['nbrAppr'](database: $database);
+
+    $data = [
+        'Promotion' => array_values($promotions),       
+        'nbrRef' => $servicePromo['nbrFilieres'](database: $database),
+        'nbrProm' => $servicePromo['nbrPromo'](database: $database),
+        'nbrAppr' => $servicePromo['nbrAppr'](database: $database),
+    ];
 
     $grillePromotion = include __DIR__ . Chemins::Promotion->value;
     $layout = include __DIR__ . Chemins::Layout->value;
 
-    echo $layout($grillePromotion($infoPromo));
+    echo $layout($grillePromotion($data));
 }
+
 
 
 
