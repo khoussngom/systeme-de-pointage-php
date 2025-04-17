@@ -41,6 +41,7 @@ return [
                 file_put_contents($databaseFile, json_encode($database, JSON_PRETTY_PRINT));
                 $message = "Ajouté avec succès";
                 header("Location:/promotion");
+                exit;
             }
         }
     },

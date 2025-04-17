@@ -19,29 +19,17 @@ return [
                 'id' => $id,
                 'password' => $password,
             ];
-            include __DIR__ . Chemins::Promotion->value;
+            header("Location:/promotion");
+            exit;
         } else {
             $message =[];
-            if(empty($id))
-            {
-                $msgId="login obligatoire";
-                $message["msgId"] = $msgId;
-            }elseif(empty($password))
-            {
-                $msgP= "password obligatoire";
-                $message["msgP"] = $msgP;
-            }elseif (empty($id) && empty($password)) {
-                $message = [
-                    "msgId" => "login obligatoire",
-                    "msgP" => "password obligatoire"
-                ];
-
-            }
-            else{
-                
-            $msg="login ou mot de passe invalide";
-            $message["mes"]=$msg;
-            }
+            $errors = [
+                'msgId' => empty($id) ? "login obligatoire" : null,
+                'msgP'  => empty($password) ? "password obligatoire" : null,
+            ];
+            
+            $message = array_filter($errors) ?: ['mes' => 'login ou mot de passe invalide'];
+            
             extract($message);
             
             include __DIR__ . Chemins::ViewLogin->value;

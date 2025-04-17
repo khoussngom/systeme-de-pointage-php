@@ -67,6 +67,8 @@ return function ($infoPromo) {
                 <div>Tous</div>
                 <div class="v">v</div>
             </div>
+            <!-- <a href="#grille" class="Gril" id="grille">Grille</a>
+            <a href="#liste" class="Liste1" id="liste">Liste</a> -->
             <div class="Gril">Grille</div>
             <div class="Liste1">Liste</div>
         </div>
@@ -112,17 +114,23 @@ return function ($infoPromo) {
         <form action="/promotion" method="post" enctype="multipart/form-data">
             <label for="nomPromo">Nom de la promotion</label>
             <input type="text" id="nom" name="nomPromo" placeholder="Ex: Promotion 2025">
-
-            <label for="debut">Date de début</label>
-            <input type="date" id="debut" name="date_debut">
-
-            <label for="fin">Date de fin</label>
-            <input type="date" id="fin" name="date_fin">
-
-            <label for="photo">Photo de la promotion</label>
-            <input type="file" id="photo" name="photo" accept="image/*">
-            <div class="info-photo">Format JPG, PNG. Taille max 2MB</div>
-
+        <div class="datePopup">
+            <div class="popuDd">
+                <label for="debut">Date de début</label>
+                <input type="date" id="debut" name="date_debut">
+            </div>
+            <div class="popuDf">
+                <label for="fin">Date de fin</label>
+                <input type="date" id="fin" name="date_fin">
+            </div>
+        </div>
+        <label for="photo">Photo de la promotion</label>
+        <div class="photdp">
+            <label for="photo" class="drop-area">
+                <span class="aj">Ajouter</span> ou Glisser
+            </label>
+            <input type="file" id="photo" name="photo" accept="image/*" style="display: none;">
+        </div>
             <label for="referentiel">Référentiels</label>
             <input type="search" id="referentiel" name="referentiel" placeholder="Rechercher un référentiel...">
 
