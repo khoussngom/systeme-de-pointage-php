@@ -10,6 +10,7 @@ enum Textes: string {
     case MDP ='Mot de passe';
     case MDPOublie = 'Mot de passe oublié ?';
     case Prom='Promotion';
+    case PromoExiste = 'Promotion déjà existante';
     case gerProm = 'Gerer les promotions de l\'école';
     case AjoutProm = '+ Ajouter une promotion';
     case AjoutSuccess = 'Ajouté avec succès';
