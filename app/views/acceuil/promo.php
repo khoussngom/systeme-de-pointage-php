@@ -24,7 +24,7 @@ $grillePromotion= function (){
                     <div class="Promo">Promotion</div>
                     <div class="gerProm">Gerer les promotions de l'école</div>      
                 </div>
-                <div class="droite1"><p> + Ajouter une promotions</p></div>
+                <div class="droite1"><a href="/login"><p> + Ajouter une promotions</p></a></div>
             </div>
             <div class="L2">
                 <div class="stat1">
