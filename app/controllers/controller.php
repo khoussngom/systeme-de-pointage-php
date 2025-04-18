@@ -13,7 +13,7 @@ function redirection(string $routes): void {
 }
 
 function login(array $params, array $con, array &$donnee): void {
-    $id = $params['id'] ?? '';
+    $id = $params['login'] ?? '';
     $password = $params['password'] ?? '';
 
     if ($con["connexion"](matricule: $id, email: $id, password: $password, database: $donnee["database"])) {
