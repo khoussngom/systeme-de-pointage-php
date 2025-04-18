@@ -124,6 +124,23 @@
     width: 90%;
 }
 
+.preA {
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: var(--VERT);
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    color: var(--White);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
 .Gril {
     align-items: center;
     justify-content: center;

@@ -30,13 +30,11 @@ return [
             $message =[];
             
             $errors = [
-                // 'msgId' => empty($id) ? Textes::LogObli->value : null,
-                // 'msgP'  => empty($password) ? Textes::PasObli->value: null,
+
                 'msgId' => 'Login Obligatoires',
                 'msgP'  => 'Password Obligatoires',
             ];
-            
-            // $message = array_filter($errors) ?: ['mes' => Textes::LogPasInv->value];
+
             $message = array_filter($errors) ?: ['mes' => 'Login et Password obligatoires'];
 
             
@@ -45,5 +43,34 @@ return [
             include __DIR__ . Chemins::ViewLogin->value;
         }
     },
+"changerPassword" => function(string $email, string $newPassword) use ($con, &$donnee): void {
+    if (empty($email) || empty($newPassword)) {
+        $_SESSION['error'] = "Tous les champs doivent être remplis.";
+        header("Location:/MDP");
+        exit;
+    }
+
+    if (!$con["TrouverMail"]($email, $donnee["database"])) {
+        $_SESSION['error'] = "Email introuvable.";
+        header("Location:/MDP");
+        exit;
+    }
+
+    if ($con["ChangerPassword"]($email, $newPassword, $donnee["database"])) {
+        $_SESSION['success'] = "Mot de passe changé avec succès.";
+        file_put_contents(
+            $donnee["databaseFile"],
+            json_encode($donnee["database"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        );
+        
+        header("Location:/login"); 
+        exit;
+    } else {
+        $_SESSION['error'] = "Erreur lors du changement du mot de passe.";
+        header("Location:/MDP");
+        exit;
+    }
+},
+
 
 ];

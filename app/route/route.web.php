@@ -15,6 +15,15 @@ match (true) {
 
     $request === '/login' && $method === 'GET' => include __DIR__.Chemins::ViewLogin->value,
 
+    $request === '/MDP' && $method === 'GET' => include __DIR__.Chemins::ChangePass->value,
+
+    $request === '/MDP' && $method === 'POST' => $controller['changerPassword'](
+        email: $_POST['email'] ?? '',
+        newPassword: $_POST['password'] ?? ''
+    ),
+
+
+
     $request === '/layout' && $method === 'GET' => include __DIR__.Chemins::Layout->value,
 
     $request === '/promotion' && $method === 'GET' => 

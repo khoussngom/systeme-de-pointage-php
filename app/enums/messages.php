@@ -20,6 +20,15 @@ enum Textes: string {
     case LogPasInv = 'login ou mot de passe invalide';
 
     case DatInv='Date invalide';
+    
+
+    case ChangePass='Changer Mot de Passe';
+
+    case EntrerEm = 'Entrer votre Email';
+    case Changer= 'Changer';
+
+
+
 }
 
 

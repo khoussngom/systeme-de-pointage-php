@@ -40,7 +40,7 @@ use Textes;
                         <input type="text" class="<?php if(empty($message["msgP"])):?>entrer masque<?php else: ?>entrer masque alert<?php endif; ?>" id="password" name="password" placeholder="<?php if(empty($message["msgP"])): ?><?=Textes::PlaceholderMdp->value;?><?php else: ?><?= $message["msgP"] ?><?php endif; ?>" >
                 </div>
                 <div class="mdpOublie">
-                    <a href="#"><?=Textes::MDPOublie->value;?></a>
+                    <a href="/MDP"><?=Textes::MDPOublie->value;?></a>
                 </div>
                 <div class="bc">
                    <input class="btnSeConnecter"  type="submit" value="<?=Textes::SeConnecter->value;?>">   

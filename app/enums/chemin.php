@@ -3,6 +3,8 @@ enum Chemins: string {
     case Dashboard = '/../views/acceuil/dashboard.php';
     case PopupAjouter= '/../views/acceuil/popup.ajouter.php';
     case ViewLogin = '/../views/login/connexion.html.php';
+    case ChangePass = '/../views/login/mdpOublie.html.php';
+
     case Layout = '/../views/layout/base.layout.php';
     case Promotion = '/../views/acceuil/promo.php';
     case Referentiel = '/../views/acceuil/referentiels.php';

@@ -34,7 +34,7 @@ return function ($data) {
                 
             </div>
 
-            <div class="Gril">+ Ajouter à la promotion</div>
+           <a href="" class="preA"><div class="Gril">+ Ajouter à la promotion</div></a> 
             
         </div>
 
@@ -137,6 +137,39 @@ return function ($data) {
         <div class="pied-page">
         
         </div>
+    </div>
+</div>
+
+<a id="form-popup" class="overlay" href="#"></a>
+<div class="popbi">
+    <div class="popup">
+        <h2>Créer une nouvelle promotion</h2>
+        <?php
+           
+            if (isset($_SESSION['form_message'])) {
+                echo '<div class="error-message">'.htmlspecialchars($_SESSION['form_message']).'</div>';
+                unset($_SESSION['form_message']); 
+            }
+        ?>
+        <form action="/promotion" method="post" enctype="multipart/form-data">
+            <label for="nomPromo">Nom de la promotion</label>
+            <input type="text" id="nom" name="nomPromo" placeholder="Ex: Promotion 2025">
+       
+        <label for="photo">Photo de la promotion</label>
+        <div class="photdp">
+            <label for="photo" class="drop-area">
+                <span class="aj">Ajouter</span> ou Glisser
+            </label>
+            <input type="file" id="photo" name="photo" accept="image/*" style="display: none;">
+        </div>
+            <label for="referentiel">Référentiels</label>
+            <input type="search" id="referentiel" name="referentiel" placeholder="Rechercher un référentiel...">
+
+            <div class="actions">
+                <a href="#"><button type="button" class="cancel">Annuler</button></a>
+                <button type="submit" class="submit">Créer la promotion</button>
+            </div>
+        </form>
     </div>
 </div>
 </html>
