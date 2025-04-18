@@ -1,55 +1,68 @@
 <?php
 declare(strict_types=1);
-namespace App\Route;
-use Chemins;
 
-$model = include __DIR__.Chemins::Model->value;
-$controller = include __DIR__.Chemins::Controller->value;
-$controllerPromo= include __DIR__.Chemins::PromoController->value;
-$controllerRef=include __DIR__.Chemins::RefController->value;
+use App\Controllers;
 
-$request = $_SERVER['REQUEST_URI'];
-$method = $_SERVER['REQUEST_METHOD'];
-
-match (true) {
-
-    $request === '/login' && $method === 'GET' => include __DIR__.Chemins::ViewLogin->value,
-
-    $request === '/MDP' && $method === 'GET' => include __DIR__.Chemins::ChangePass->value,
-
-    $request === '/MDP' && $method === 'POST' => $controller['changerPassword'](
-        email: $_POST['email'] ?? '',
-        newPassword: $_POST['password'] ?? ''
-    ),
+$promotionController = require __DIR__ . Chemins::PromoController->value;
+$referentielController = require __DIR__ . Chemins::RefController->value;
+$authController = require __DIR__ . Chemins::Controller->value;
 
 
+$routes = [
+    '/promotion' => $promotionController['affichageAllPromo'],
 
-    $request === '/layout' && $method === 'GET' => include __DIR__.Chemins::Layout->value,
+    '/promotion/ajout' => function() use ($promotionController) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $promotionController['ajoutPromo'](
+                $_POST['nomPromo'] ?? '',
+                $_POST['dateDebut'] ?? '',
+                $_POST['dateFin'] ?? '',
+                $_FILES['photoPromo'] ?? [],
+                $_POST['referentiel'] ?? ''
+            );
+        }
+    },
 
-    $request === '/promotion' && $method === 'GET' => 
-    $controllerPromo['affichageAllPromo'](),
+    '/referentiels' => $referentielController['affichageRef'],
 
+    '/referentiels/ajout' => function() use ($referentielController) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $referentielController['ajoutReferentiel'](
+                $_POST['nomReferentiel'] ?? '',
+                $_POST['description'] ?? '',
+                $_FILES['photoReferentiel'] ?? []
+            );
+        }
+    },
 
-    $request === '/promotion' && $method === 'POST' =>
-        $controllerPromo['ajoutPromo'](
-            nomPromo:$_POST['nomPromo'] ?? '',
-            dateDebut:$_POST['date_debut'] ?? '',
-            dateFin:$_POST['date_fin'] ?? '',
-            referentiel:$_POST['referentiel'] ??'',
-            photoPromo: $_FILES['photo'] ?? null,
-            ),
+    '/login' => function() use ($authController) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController['login']($_POST);
+        } else {
+            include __DIR__ . Chemins::ViewLogin->value;
+        }
+    },
 
-    $request === '/referentiels' && $method === 'GET' =>
-    $controllerRef['affichageRef'](),
+    '/logout' => include __DIR__ . Chemins::ViewLogin->value,
+
     
-    $request === '/logout' && $method === 'POST'=> include __DIR__.Chemins::Logout->value,
 
-    $request === '/login' && $method === 'POST' => $controller['login'](
-        id: $_POST['login'] ?? '',
-        password: $_POST['password'] ?? ''
-    ),
+    '/MDP' => function() use ($authController) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController['changerPassword']($_POST);
+        } else {
+            include __DIR__ . Chemins::ChangePass->value;
+        }
+    },
+];
 
-    $request === '/dashboard' && isset($_SESSION['user']) => include __DIR__.Chemins::Dashboard->value,
 
-    default => include __DIR__.Chemins::ViewLogin->value,
-};
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if (isset($routes[$path])) {
+    $handler = $routes[$path];
+    $handler();
+} else {
+    http_response_code(404);
+    echo "Page non trouvée.";
+}

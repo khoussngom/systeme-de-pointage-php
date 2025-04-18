@@ -3,61 +3,50 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Chemins;
-use Textes;
-
 
 $donnee = include __DIR__ . Chemins::Model->value;
-$con=include __DIR__ . Chemins::Service->value;
+$con = include __DIR__ . Chemins::Service->value;
 
-$redirection=function(string $routes){
-    return header("Location:/". $routes);
-};
+function redirection(string $routes): void {
+    header("Location:/" . $routes);
+    exit;
+}
 
+function login(array $params, array $con, array &$donnee): void {
+    $id = $params['id'] ?? '';
+    $password = $params['password'] ?? '';
 
-$requete = $_SERVER["REQUEST_METHOD"];
+    if ($con["connexion"](matricule: $id, email: $id, password: $password, database: $donnee["database"])) {
+        $_SESSION['user'] = [
+            'id' => $id,
+            'password' => $password,
+        ];
+        redirection("promotion");
+    } else {
+        $errors = [
+            'msgId' => 'Login Obligatoires',
+            'msgP'  => 'Password Obligatoires',
+        ];
 
-return [
-    
-    "login" => function(string $id,string $password) use($con,$donnee,$redirection): void  {
-    
-        
-        if ($con["connexion"](matricule:$id,email:$id,password:$password,database:$donnee["database"])) {
-            $_SESSION['user'] = [
-                'id' => $id,
-                'password' => $password,
-            ];
-            $redirection("promotion");
-            exit;
-            
-        } else {
-            
-            $message =[];
-            
-            $errors = [
+        // $message = array_filter($errors) ?: ['mes' => 'Login et Password obligatoires'];
 
-                'msgId' => 'Login Obligatoires',
-                'msgP'  => 'Password Obligatoires',
-            ];
+        // extract($message);
+        include __DIR__ . Chemins::ViewLogin->value;
+    }
+}
 
-            $message = array_filter($errors) ?: ['mes' => 'Login et Password obligatoires'];
+function changerPassword(array $params, array &$donnee, array $con): void {
+    $email = $params['email'] ?? '';
+    $newPassword = $params['newPassword'] ?? '';
 
-            
-            extract($message);
-            
-            include __DIR__ . Chemins::ViewLogin->value;
-        }
-    },
-"changerPassword" => function(string $email, string $newPassword) use ($con, &$donnee,$redirection): void {
     if (empty($email) || empty($newPassword)) {
         $_SESSION['error'] = "Tous les champs doivent être remplis.";
-        $redirection("MDP");
-        exit;
+        redirection("MDP");
     }
 
     if (!$con["TrouverMail"]($email, $donnee["database"])) {
         $_SESSION['error'] = "Email introuvable.";
-        $redirection("MDP");
-        exit;
+        redirection("MDP");
     }
 
     if ($con["ChangerPassword"]($email, $newPassword, $donnee["database"])) {
@@ -66,15 +55,19 @@ return [
             $donnee["databaseFile"],
             json_encode($donnee["database"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
         );
-        
-        $redirection("login");
-        exit;
+        redirection("login");
     } else {
         $_SESSION['error'] = "Erreur lors du changement du mot de passe.";
-        $redirection("MDP");
-        exit;
+        redirection("MDP");
     }
-},
+}
 
 
+return [
+    'login' => function(array $params) use ($con, &$donnee) {
+        login($params, $con, $donnee);
+    },
+    'changerPassword' => function(array $params) use (&$donnee, $con) {
+        changerPassword($params, $donnee, $con);
+    },
 ];
