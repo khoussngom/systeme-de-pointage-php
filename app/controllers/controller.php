@@ -9,12 +9,16 @@ use Textes;
 $donnee = include __DIR__ . Chemins::Model->value;
 $con=include __DIR__ . Chemins::Service->value;
 
+$redirection=function(string $routes){
+    return header("Location:/". $routes);
+};
+
 
 $requete = $_SERVER["REQUEST_METHOD"];
 
 return [
     
-    "login" => function(string $id,string $password) use($con,$donnee): void  {
+    "login" => function(string $id,string $password) use($con,$donnee,$redirection): void  {
     
         
         if ($con["connexion"](matricule:$id,email:$id,password:$password,database:$donnee["database"])) {
@@ -22,7 +26,7 @@ return [
                 'id' => $id,
                 'password' => $password,
             ];
-            header("Location:/promotion");
+            $redirection("promotion");
             exit;
             
         } else {
@@ -43,16 +47,16 @@ return [
             include __DIR__ . Chemins::ViewLogin->value;
         }
     },
-"changerPassword" => function(string $email, string $newPassword) use ($con, &$donnee): void {
+"changerPassword" => function(string $email, string $newPassword) use ($con, &$donnee,$redirection): void {
     if (empty($email) || empty($newPassword)) {
         $_SESSION['error'] = "Tous les champs doivent être remplis.";
-        header("Location:/MDP");
+        $redirection("MDP");
         exit;
     }
 
     if (!$con["TrouverMail"]($email, $donnee["database"])) {
         $_SESSION['error'] = "Email introuvable.";
-        header("Location:/MDP");
+        $redirection("MDP");
         exit;
     }
 
@@ -63,11 +67,11 @@ return [
             json_encode($donnee["database"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
         );
         
-        header("Location:/login"); 
+        $redirection("login");
         exit;
     } else {
         $_SESSION['error'] = "Erreur lors du changement du mot de passe.";
-        header("Location:/MDP");
+        $redirection("MDP");
         exit;
     }
 },

@@ -10,9 +10,9 @@ enum Chemins: string {
     case Referentiel = '/../views/acceuil/referentiels.php';
     case Logout = '/../views/login/logout.php';
     case Model     = '/../models/model.php';
-    case Service  =  '/../services/connexion.service.php';
-    case ServicePromo  =  '/../services/service.promo.php';
-    case ServiceRef  =  '/../services/service.referentiel.php';
+    case Service  =  '/../models/connexion.model.php';
+    case ServicePromo  =  '/../models/model.promo.php';
+    case ServiceRef  =  '/../models/model.referentiel.php';
 
     case Validator  =  '/../services/validator.service.php';
     case Controller= '/../controllers/controller.php';
