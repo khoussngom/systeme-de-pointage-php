@@ -7,7 +7,7 @@ namespace App\Controllers;
 use Chemins;
 
 $serviceRef = include __DIR__ . Chemins::ServiceRef->value;
-$validator = include __DIR__ . Chemins::Validator->value;
+
 
 
 function affichageRef(): void

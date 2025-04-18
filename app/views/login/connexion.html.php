@@ -1,9 +1,9 @@
-<?php include __DIR__ ."/../../enums/messages.php"; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php
 $url="http://".$_SERVER["HTTP_HOST"];
-use Textes;
+require_once __DIR__ . '/../../enums/Textes.php';
+use App\MESS\Enums\Textes;
 
 ?>
 <head>

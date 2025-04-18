@@ -1,4 +1,5 @@
 <?php
+use App\MESS\Enums\Textes;
 if (!isset($_SESSION['user'])) {
     header("Location: /login");
     exit();
@@ -8,7 +9,7 @@ if (!isset($_SESSION['user'])) {
 <?php 
 return function($contenu){
     ob_start();
-    include __DIR__ ."/../../enums/messages.php"; 
+    
 
     $path = "http://" . $_SERVER["HTTP_HOST"];
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // détecte la page actuelle

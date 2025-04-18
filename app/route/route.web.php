@@ -7,7 +7,6 @@ $promotionController = require __DIR__ . Chemins::PromoController->value;
 $referentielController = require __DIR__ . Chemins::RefController->value;
 $authController = require __DIR__ . Chemins::Controller->value;
 
-
 $routes = [
     '/promotion' => $promotionController['affichageAllPromo'],
 
@@ -37,15 +36,16 @@ $routes = [
 
     '/login' => function() use ($authController) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ 
             $authController['login']($_POST);
         } else {
             include __DIR__ . Chemins::ViewLogin->value;
         }
     },
 
-    '/logout' => include __DIR__ . Chemins::ViewLogin->value,
-
-    
+    '/logout' => function() use ($authController) {
+        $authController['logout']();
+    },
 
     '/MDP' => function() use ($authController) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -55,6 +55,7 @@ $routes = [
         }
     },
 ];
+
 
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

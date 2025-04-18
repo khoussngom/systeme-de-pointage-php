@@ -1,5 +1,5 @@
 <?php
-
+namespace App\MESS\Enums;
 enum Textes: string {
     case Bienvenue1 = 'Bienvenue sur';
     case ECSA = 'Ecole du code Sonatel Academy';
@@ -18,12 +18,15 @@ enum Textes: string {
     case LogObli ='login obligatoire';
     case PasObli = 'password obligatoire';
     case LogPasInv = 'login ou mot de passe invalide';
-
+ 
+    case EMAILINT = 'Email Introuvable !';
     case DatInv='Date invalide';
     
 
     case ChangePass='Changer Mot de Passe';
 
+    case ChangePassSUC='Mot de Passe changer avec succés';
+    case ChangePassEr= 'Erreur lors du changement du mot de passe.';
     case EntrerEm = 'Entrer votre Email';
     case Changer= 'Changer';
 

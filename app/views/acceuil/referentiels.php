@@ -1,4 +1,5 @@
 <?php 
+use App\MESS\Enums\Textes;
 include __DIR__ ."/../layout/base.layout.php";
 
 return function ($data) {
