@@ -184,6 +184,20 @@ img {
     align-items: center;
 }
 
+.menu a.active {
+    background-color: var(--orange);
+    color: white;
+}
+
+.menu a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .saysay {
     height: 30%;
 }

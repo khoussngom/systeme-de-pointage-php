@@ -6,6 +6,7 @@ use Chemins;
 $model = include __DIR__.Chemins::Model->value;
 $controller = include __DIR__.Chemins::Controller->value;
 $controllerPromo= include __DIR__.Chemins::PromoController->value;
+$controllerRef=include __DIR__.Chemins::RefController->value;
 
 $request = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -19,6 +20,7 @@ match (true) {
     $request === '/promotion' && $method === 'GET' => 
     $controllerPromo['affichageAllPromo'](),
 
+
     $request === '/promotion' && $method === 'POST' =>
         $controllerPromo['ajoutPromo'](
             nomPromo:$_POST['nomPromo'] ?? '',
@@ -28,6 +30,8 @@ match (true) {
             photoPromo: $_FILES['photo'] ?? null,
             ),
 
+    $request === '/referentiels' && $method === 'GET' =>
+    $controllerRef['affichageRef'](),
     
     $request === '/logout' && $method === 'POST'=> include __DIR__.Chemins::Logout->value,
 

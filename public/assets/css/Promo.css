@@ -28,7 +28,6 @@
     height: 100vh;
     justify-content: space-between;
     align-items: center;
-    padding: auto;
 }
 
 .containerProm {
@@ -40,7 +39,6 @@
     gap: 15px;
     height: 98%;
     width: 98%;
-    background-color: var(--bleuCiel);
 }
 
 .Ligne1 {
@@ -256,7 +254,7 @@
     background-color: var(--White);
     border-radius: 10px 10px 10px 10px;
     width: 32%;
-    height: 60%;
+    height: 57%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -266,9 +264,9 @@
 .onOff {
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 15%;
+    height: 20%;
     position: left;
-    width: 30%;
+    width: 25%;
     background-color: brown;
     display: flex;
     flex-direction: row;
@@ -518,4 +516,11 @@
     font-weight: bold;
     margin: 10px 0;
     text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    width: 5%;
 }

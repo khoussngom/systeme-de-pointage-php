@@ -104,6 +104,7 @@ return function ($data) {
         <?php endif; ?>
     </div>
 
+    <div class="pagination"></div>
     </div>
 </div>
 

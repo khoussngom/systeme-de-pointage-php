@@ -18,7 +18,7 @@ return [
     $databaseFile = $donnee['databaseFile'];
 
     session_start();
-    require __DIR__ .'/../enums/messages.php';
+    require_once __DIR__ .'/../enums/messages.php';
 
     $servicePromo = include __DIR__ . Chemins::ServicePromo->value;
 
@@ -32,7 +32,7 @@ return [
         if ($condition) {
             $_SESSION['form_message'] = $message;
             header("Location:/promotion#form-popup");
-            session_unset();
+        
             exit;
         }
     });
@@ -54,7 +54,7 @@ return [
         file_put_contents($databaseFile, json_encode($database, JSON_PRETTY_PRINT));
         $_SESSION['form_message'] = Textes::AjoutSuccess->value;
         header("Location:/promotion");
-        session_unset();
+ 
         exit;
     }
 },
@@ -85,8 +85,5 @@ return [
 
     echo $layout($grillePromotion($data));
 }
-
-
-
 
 ];

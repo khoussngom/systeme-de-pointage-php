@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Chemins;
 use Textes;
 
+
 $donnee = include __DIR__ . Chemins::Model->value;
 $con=include __DIR__ . Chemins::Service->value;
 
@@ -12,8 +13,10 @@ $con=include __DIR__ . Chemins::Service->value;
 $requete = $_SERVER["REQUEST_METHOD"];
 
 return [
+    
     "login" => function(string $id,string $password) use($con,$donnee): void  {
-      
+    
+        
         if ($con["connexion"](matricule:$id,email:$id,password:$password,database:$donnee["database"])) {
             $_SESSION['user'] = [
                 'id' => $id,
@@ -21,14 +24,21 @@ return [
             ];
             header("Location:/promotion");
             exit;
+            
         } else {
+            
             $message =[];
+            
             $errors = [
-                'msgId' => empty($id) ? Textes::LogObli->value : null,
-                'msgP'  => empty($password) ? Textes::PasObli->value: null,
+                // 'msgId' => empty($id) ? Textes::LogObli->value : null,
+                // 'msgP'  => empty($password) ? Textes::PasObli->value: null,
+                'msgId' => 'Login Obligatoires',
+                'msgP'  => 'Password Obligatoires',
             ];
             
-            $message = array_filter($errors) ?: ['mes' => Textes::LogPasInv->value];
+            // $message = array_filter($errors) ?: ['mes' => Textes::LogPasInv->value];
+            $message = array_filter($errors) ?: ['mes' => 'Login et Password obligatoires'];
+
             
             extract($message);
             
