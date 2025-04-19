@@ -16,6 +16,7 @@ return [
             'photoPromo' => $photoPromo,
             'debut' => $dateDebut,
             'fin' => $dateFin,
+            "etat"=>"inactive"
         ];
         return true;
     },

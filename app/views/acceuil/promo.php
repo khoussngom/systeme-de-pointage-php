@@ -4,6 +4,7 @@ include __DIR__ . "/../layout/base.layout.php";
 return function ($data) {
     ob_start();
     $urlCss = "http://" . $_SERVER["HTTP_HOST"];
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
