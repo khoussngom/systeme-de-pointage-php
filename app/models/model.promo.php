@@ -16,10 +16,23 @@ return [
             'photoPromo' => $photoPromo,
             'debut' => $dateDebut,
             'fin' => $dateFin,
+            "etat"=>"inactive"
         ];
         return true;
     },
     'afficherAllPromo' => fn($database) => $database['Promotion'],
+
+'chercherPromo' => function($database, $nomPromo) {
+            $nomPromo = trim(strtolower($nomPromo));
+            $promos = array_filter($database['Promotion'], function($promo) use ($nomPromo) {
+                $matricule = trim(strtolower($promo['MatriculePromo']));
+                return $matricule === $nomPromo;
+            });
+;
+            return !empty($promos) ? array_values($promos)[0] : null;
+        },
+
+
 
     'nbrFilieres' => function(array $database) {
     $filieres = array_map(function($promo) {

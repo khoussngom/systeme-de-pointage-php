@@ -175,10 +175,14 @@
 .Liste1 {
     background-color: var(--White);
     flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
+    text-decoration: none;
+    border-radius: 10px 10px 10px 10px;
+    color: var(--Noir);
 }
 
 .listeProm {
@@ -606,4 +610,18 @@
 .pagination a.active {
     background-color: var(--Orange);
     color: white;
+}
+
+.cadreProm.active {
+    border: 2px solid var(--VERT);
+}
+
+.cadreProm .off {
+    font-weight: bold;
+    color: var(--Rouge);
+}
+
+.cadreProm.active .off {
+    color: var(--White);
+    background-color: var(--VERT);
 }

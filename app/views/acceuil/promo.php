@@ -4,6 +4,7 @@ include __DIR__ . "/../layout/base.layout.php";
 return function ($data) {
     ob_start();
     $urlCss = "http://" . $_SERVER["HTTP_HOST"];
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -59,16 +60,27 @@ return function ($data) {
 
             <div class="Cherche">
                 <div class="search1">
-                    <form action="" method="get">
-                        <input type="text" name="recherche" placeholder="Rechercher">
+                    <form id="form-recherche" action="?" method="get">
+                        <input type="text" name="recherche" placeholder="Rechercher" value="<?= isset($_GET['recherche']) ? htmlspecialchars($_GET['recherche']) : '' ?>">
                     </form>
                 </div>
-                <div class="filtre1">
+
+                <div class="filtre1" id="btn-recherche">
                     <div>Tous</div>
-                    <div class="v">v</div>
+                    <div class="v">
+                        <i class="fas fa-chevron-down"></i> 
+                    </div>
                 </div>
+
+                <script>
+                    document.getElementById('btn-recherche').addEventListener('click', function() {
+                        document.getElementById('form-recherche').submit();
+                    });
+                </script>
+
+
                 <div class="Gril">Grille</div>
-                <div class="Liste1">Liste</div>
+                <a class="Liste1" href="/promotion/liste"><div >Liste</div></a>
             </div>
 
             <div class="listeProm">
@@ -167,6 +179,42 @@ return function ($data) {
             </form>
         </div>
     </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const switches = document.querySelectorAll('.cadreProm');
+
+    switches.forEach((cadre) => {
+        const onOffDiv = cadre.querySelector('.onOff');
+
+        onOffDiv.addEventListener('click', function() {
+
+            switches.forEach((otherCadre) => {
+                if (otherCadre !== cadre) {
+                    const offText = otherCadre.querySelector('.off');
+                    offText.textContent = 'Inactive';
+                    otherCadre.classList.remove('active');
+                }
+            });
+
+        
+            const offText = cadre.querySelector('.off');
+            const isActive = cadre.classList.contains('active');
+
+            if (isActive) {
+            
+                offText.textContent = 'Inactive';
+                cadre.classList.remove('active');
+            } else {
+                
+                offText.textContent = 'Active';
+                cadre.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>
 <?php

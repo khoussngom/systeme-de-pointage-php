@@ -8,7 +8,30 @@ $referentielController = require __DIR__ . Chemins::RefController->value;
 $authController = require __DIR__ . Chemins::Controller->value;
 
 $routes = [
-    '/promotion' => $promotionController['affichageAllPromo'],
+    '/promotion' => function() use ($promotionController) {
+        
+        $recherche = $_GET['recherche'] ?? '';
+
+        if (!empty($recherche)) {
+            $promotionController['trouverPromoGrille']($recherche);
+        } else {
+            $promotionController['affichageAllPromo']();
+        }
+    },
+
+
+    '/promotion/liste' => function() use ($promotionController) {
+        $recherche = $_GET['recherche'] ?? '';
+
+        if (!empty($recherche)) {
+                $promotionController['trouverPromoListe']($recherche);
+        } else {
+            $promotionController['affichageListe']();
+        }
+    },
+
+
+
 
     '/promotion/ajout' => function() use ($promotionController) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,6 +44,9 @@ $routes = [
             );
         }
     },
+
+
+
 
     '/referentiels' => $referentielController['affichageRef'],
 
