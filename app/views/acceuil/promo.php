@@ -178,6 +178,42 @@ return function ($data) {
             </form>
         </div>
     </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const switches = document.querySelectorAll('.cadreProm');
+
+    switches.forEach((cadre) => {
+        const onOffDiv = cadre.querySelector('.onOff');
+
+        onOffDiv.addEventListener('click', function() {
+
+            switches.forEach((otherCadre) => {
+                if (otherCadre !== cadre) {
+                    const offText = otherCadre.querySelector('.off');
+                    offText.textContent = 'Inactive';
+                    otherCadre.classList.remove('active');
+                }
+            });
+
+        
+            const offText = cadre.querySelector('.off');
+            const isActive = cadre.classList.contains('active');
+
+            if (isActive) {
+            
+                offText.textContent = 'Inactive';
+                cadre.classList.remove('active');
+            } else {
+                
+                offText.textContent = 'Active';
+                cadre.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>
 <?php

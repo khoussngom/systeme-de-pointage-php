@@ -607,3 +607,17 @@
     background-color: var(--Orange);
     color: white;
 }
+
+.cadreProm.active {
+    border: 2px solid var(--VERT);
+}
+
+.cadreProm .off {
+    font-weight: bold;
+    color: var(--Rouge);
+}
+
+.cadreProm.active .off {
+    color: var(--White);
+    background-color: var(--VERT);
+}
