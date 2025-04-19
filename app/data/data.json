@@ -28,7 +28,7 @@
     }],
     "Promotion": [{
             "MatriculePromo": "promotion 2025",
-            "filiere": "dev-web",
+            "filiere": "hackeuse",
             "photoPromo": "\/WhatsApp Image 2025-03-18 at 20.51.16 (2).jpeg",
             "debut": "2025-02-06",
             "fin": "2025-11-17",
@@ -82,7 +82,7 @@
         },
         {
             "MatriculePromo": "promo 2010",
-            "filiere": "DEV-WEB",
+            "filiere": "dev-web",
             "photoPromo": "\/3d-render-grunge-room-interior-with-foggy-atmosphere.jpg",
             "debut": "01\/01\/2010",
             "fin": "01\/08\/2010",
@@ -98,21 +98,21 @@
             "PhotoRef": "\/WhatsApp Image 2025-03-18 at 20.51.16 (1).jpeg"
         },
         {
-            "Nom": "Dev-Web",
+            "Nom": "Ref-digital",
             "NombresModule": 8,
             "NombresApprenant": 50,
             "Description": "Contre-indices de synthétique, le référence digital pathique...",
             "PhotoRef": "\/WhatsApp Image 2025-03-18 at 20.51.16 (1).jpeg"
         },
         {
-            "Nom": "Dev-Web",
+            "Nom": "hackeuse",
             "NombresModule": 8,
             "NombresApprenant": 50,
             "Description": "Contre-indices de synthétique, le référence digital pathique...",
             "PhotoRef": "\/WhatsApp Image 2025-03-18 at 20.51.16 (1).jpeg"
         },
         {
-            "Nom": "Dev-Web",
+            "Nom": "dev-data",
             "NombresModule": 8,
             "NombresApprenant": 50,
             "Description": "Contre-indices de synthétique, le référence digital pathique...",

@@ -12,3 +12,4 @@ return [
     "database" => $database,
     "databaseFile" => $databaseFile  
 ];
+//il veut ici json to array et array to json aussi file get content ,file put content

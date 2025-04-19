@@ -80,7 +80,7 @@ return function ($data) {
 
 
                 <div class="Gril">Grille</div>
-                <div class="Liste1">Liste</div>
+                <a class="Liste1" href="/promotion/liste"><div >Liste</div></a>
             </div>
 
             <div class="listeProm">

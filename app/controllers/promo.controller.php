@@ -132,6 +132,46 @@ function trouverPromo($nomPromo, $servicePromo) {
 
 }
 
+function affichageListe(array $servicePromo){
+    $donnee = include __DIR__ . Chemins::Model->value;
+    $database = $donnee['database'];
+
+    $infoPromo = $servicePromo['afficherAllPromo']($database);
+    $promotions = array_filter($infoPromo, function($promo) {
+        return 
+            isset($promo['MatriculePromo'], $promo['filiere'], $promo['photoPromo'], $promo['debut'], $promo['fin']) &&
+            !empty($promo['MatriculePromo']) && !empty($promo['filiere']) && !empty($promo['photoPromo']) && !empty($promo['debut']) && !empty($promo['fin']);
+    });
+
+
+    $promotions = array_values($promotions); 
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+    $perPage = isset($_GET['perPage']) ? (int)$_GET['perPage'] : 6;
+
+    $totalPromotions = count($promotions);
+    $totalPages = ceil($totalPromotions / $perPage);
+
+    $offset = ($page - 1) * $perPage;
+    $promotionsPage = array_slice($promotions, $offset, $perPage);
+
+
+    $data = [
+        'Promotion' => $promotionsPage,
+        'REF'=>$database['Referentiels'],
+        'nbrRef' => $servicePromo['nbrFilieres']($database),
+        'nbrProm' => $servicePromo['nbrPromo']($database),
+        'nbrAppr' => $servicePromo['nbrAppr']($database),
+        'totalPages' => $totalPages,
+        'pageActuelle' => $page,
+    ];
+    $ListePromotion = include __DIR__ . Chemins::PromotionListe->value;
+    
+
+
+    echo  $ListePromotion($data);
+}
+
 
 
 
@@ -145,6 +185,12 @@ return [
 
         affichageAllPromo($servicePromo);
     },
+
+    'affichageListe' => function() use ($servicePromo) {
+
+        affichageListe($servicePromo);
+    },
+
     'trouverPromo'=>function($nomPromo) use ($servicePromo) {
        return trouverPromo($nomPromo, $servicePromo);
     }
