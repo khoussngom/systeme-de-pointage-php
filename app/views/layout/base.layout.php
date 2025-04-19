@@ -12,7 +12,7 @@ return function($contenu){
     
 
     $path = "http://" . $_SERVER["HTTP_HOST"];
-    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // détecte la page actuelle
+    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
 ?>
 
 <!DOCTYPE html>

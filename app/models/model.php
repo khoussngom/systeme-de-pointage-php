@@ -1,15 +1,30 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Models;
 
 use Chemins;
 
 $databaseFile = __DIR__ . Chemins::DataJson->value;
 
-$database = json_decode(file_get_contents($databaseFile), true);
+$chargerDatabase = function (string $file): array {
+    if (!file_exists($file)) {
+        return [];
+    }
+    $json = file_get_contents($file);
+    return json_decode($json, true) ?? [];
+};
+
+$saveDatabase = function (string $file, array $data): void {
+    $json = json_encode($data, JSON_PRETTY_PRINT);
+    file_put_contents($file, $json);
+};
+
+$database = $loadDatabase($databaseFile);
 
 return [
     "database" => $database,
-    "databaseFile" => $databaseFile  
+    "databaseFile" => $databaseFile,
+    "loadDatabase" => $chargerDatabase,
+    "saveDatabase" => $saveDatabase,
 ];
-//il veut ici json to array et array to json aussi file get content ,file put content
