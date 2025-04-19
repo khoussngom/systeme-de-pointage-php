@@ -104,13 +104,16 @@ function trouverPromo($nomPromo, $servicePromo) {
     $promoCherchee = $servicePromo['chercherPromo'](database: $database, nomPromo: $nomPromo);
 
     if ($promoCherchee) {
+       
+        if (!isset($promoCherchee[0])) {
+            $promoCherchee = [$promoCherchee];
+        }
+    
         $data = [
             'Promotion' => $promoCherchee,
             'nbrRef' => $servicePromo['nbrFilieres']($database),
             'nbrProm' => $servicePromo['nbrPromo']($database),
             'nbrAppr' => $servicePromo['nbrAppr']($database),
-            'totalPages' => $totalPages,
-            'pageActuelle' => $page,
         ];
     } else {
         $data = [
@@ -118,6 +121,7 @@ function trouverPromo($nomPromo, $servicePromo) {
             'message' => 'Aucune promotion trouvée pour ce terme de recherche.'
         ];
     }
+    
 
     $grillePromotion = include __DIR__ . Chemins::Promotion->value;
     $layout = include __DIR__ . Chemins::Layout->value;

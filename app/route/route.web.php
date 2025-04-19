@@ -13,7 +13,7 @@ $routes = [
         $recherche = $_GET['recherche'] ?? '';
 
         if (!empty($recherche)) {
-            $promotionController['trouverPromo']($recherche, $promotionController);
+            $promotionController['trouverPromo']($recherche);
         } else {
             $promotionController['affichageAllPromo']();
         }
