@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace App\Controllers;
 
+namespace App\Controllers;
+use App\MESS\Enums\Textes;
 use Chemins;
 
 $servicePromo = include __DIR__ . Chemins::ServicePromo->value;
@@ -20,7 +21,7 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
     $databaseFile = $donnee['databaseFile'];
 
     session_start();
-    require_once __DIR__ . '/../enums/messages.php';
+  
 
     $nomPromo = $params['nomPromo'] ?? '';
     $dateDebut = $params['dateDebut'] ?? '';
@@ -29,9 +30,9 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
     $photoPromo = $params['photoPromo'] ?? null;
 
     $erreurs = [
-        (empty($referentiel) || empty($nomPromo) || empty($dateDebut) || empty($dateFin) || empty($photoPromo['name'])) => "Tous les champs sont obligatoire",
+        (empty($referentiel) || empty($nomPromo) || empty($dateDebut) || empty($dateFin) || empty($photoPromo['name'])) => Textes::TLO->value,
         (!$validator['date_Valide']($dateDebut) || !$validator['date_Valide']($dateFin)) => "Date invalide",
-        (!$servicePromo['unicite']($database, $nomPromo)) => "Promo Existe",
+        (!$servicePromo['unicite']($database, $nomPromo)) => Textes::PromoExiste->value,
     ];
 
     array_walk($erreurs, function($message, $condition) {
@@ -54,11 +55,10 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
 
     if ($servicePromo['ajouterPromo']($database, $nomPromo, $dateDebut, $dateFin, $referentiel, $photoPromoPath)) {
         file_put_contents($databaseFile, json_encode($database, JSON_PRETTY_PRINT));
-        $_SESSION['form_message'] = "ajouter avec success";
+        $_SESSION['form_message'] = Textes::AjoutSuccess->value;
         redirectionPromo("promotion");
     }
 }
-
 function affichageAllPromo(array $servicePromo): void {
     $donnee = include __DIR__ . Chemins::Model->value;
     $database = $donnee['database'];
@@ -71,11 +71,26 @@ function affichageAllPromo(array $servicePromo): void {
             !empty($promo['MatriculePromo']) && !empty($promo['filiere']) && !empty($promo['photoPromo']) && !empty($promo['debut']) && !empty($promo['fin']);
     });
 
+
+    $promotions = array_values($promotions); 
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+    $perPage = 6; 
+
+    $totalPromotions = count($promotions);
+    $totalPages = ceil($totalPromotions / $perPage);
+
+    $offset = ($page - 1) * $perPage;
+    $promotionsPage = array_slice($promotions, $offset, $perPage);
+   
+
     $data = [
-        'Promotion' => array_values($promotions),
+        'Promotion' => $promotionsPage,
         'nbrRef' => $servicePromo['nbrFilieres']($database),
         'nbrProm' => $servicePromo['nbrPromo']($database),
         'nbrAppr' => $servicePromo['nbrAppr']($database),
+        'totalPages' => $totalPages,
+        'pageActuelle' => $page,
     ];
 
     $grillePromotion = include __DIR__ . Chemins::Promotion->value;

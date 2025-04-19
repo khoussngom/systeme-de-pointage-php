@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace App\Controllers;
-
+require_once __DIR__ ."/../enums/Textes.php";
+use App\MESS\Enums\Textes;
 use Chemins;
 
 $donnee = include __DIR__ . Chemins::Model->value;
@@ -13,8 +14,8 @@ function redirection(string $routes): void {
 }
 
 function login(array $params, array $con, array &$donnee): void {
-    $id = $params['login'] ?? '';
-    $password = $params['password'] ?? '';
+    $id = $params['login'] ?? '';   
+    $password = $params['password'] ?? '';  
 
     if ($con["connexion"](matricule: $id, email: $id, password: $password, database: $donnee["database"])) {
         $_SESSION['user'] = [
@@ -24,40 +25,37 @@ function login(array $params, array $con, array &$donnee): void {
         redirection("promotion");
     } else {
         $errors = [
-            'msgId' => 'Login Obligatoires',
-            'msgP'  => 'Password Obligatoires',
+            'msgId' => Textes::LogObli->value,
+            'msgP'  => Textes::PasObli->value,
         ];
-
-        // $message = array_filter($errors) ?: ['mes' => 'Login et Password obligatoires'];
-
-        // extract($message);
         include __DIR__ . Chemins::ViewLogin->value;
     }
 }
+
 
 function changerPassword(array $params, array &$donnee, array $con): void {
     $email = $params['email'] ?? '';
     $newPassword = $params['newPassword'] ?? '';
 
     if (empty($email) || empty($newPassword)) {
-        $_SESSION['error'] = "Tous les champs doivent être remplis.";
+        $_SESSION['error'] = Textes::TLO->value;
         redirection("MDP");
     }
 
     if (!$con["TrouverMail"]($email, $donnee["database"])) {
-        $_SESSION['error'] = "Email introuvable.";
+        $_SESSION['error'] = Textes::EMAILINT->value;
         redirection("MDP");
     }
 
     if ($con["ChangerPassword"]($email, $newPassword, $donnee["database"])) {
-        $_SESSION['success'] = "Mot de passe changé avec succès.";
+        $_SESSION['success'] = Textes::ChangePassSUC->value;
         file_put_contents(
             $donnee["databaseFile"],
             json_encode($donnee["database"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
         );
         redirection("login");
     } else {
-        $_SESSION['error'] = "Erreur lors du changement du mot de passe.";
+        $_SESSION['error'] = Textes::ChangePassEr->value;;
         redirection("MDP");
     }
 }
