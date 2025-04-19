@@ -38,7 +38,7 @@ return function ($data) {
       <i class="fas fa-sign-out-alt"></i> Déconnexion
     </button>
   </div>
-
+<div class="col">
   <div class="main">
     <div class="top-bar">
       <h2><span style="color: orange;"><?= htmlspecialchars(end($data['Promotion'])['MatriculePromo']) ?> </span></h2>
@@ -48,10 +48,24 @@ return function ($data) {
     </div>
 
     <div class="filters">
-      <input type="text" placeholder="Rechercher...">
-      <select><option>Filtrer par classe</option></select>
-      <select><option>Filtrer par statut</option></select>
+        <form id="form-recherche" method="get">
+          <input type="text" placeholder="Rechercher..." name="recherche" value="<?= isset($_GET['recherche']) ? htmlspecialchars($_GET['recherche']) : '' ?>">
+          <select id="btn-recherche">
+            <option>Filtrer par classe</option>
+          </select>
+          <select>
+            <option>Filtrer par statut</option>
+          </select>
+        </form>
     </div>
+
+
+    </div>
+    <script>
+                    document.getElementById('btn-recherche').addEventListener('click', function() {
+                        document.getElementById('form-recherche').submit();
+                    });
+      </script>
 
     <div class="stats">
       <div class="stat-card"><i class="fas fa-user-graduate fa-2x"></i><?= htmlspecialchars($data['nbrAppr']) ?><br><small>Apprenants</small></div>
@@ -130,6 +144,7 @@ return function ($data) {
 
 
   </div>
+
 </body>
 </html>
 <?php

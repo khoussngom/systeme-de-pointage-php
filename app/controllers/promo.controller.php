@@ -97,7 +97,7 @@ function affichageAllPromo(array $servicePromo): void {
     echo $layout($grillePromotion($data));
 }
 
-function trouverPromo($nomPromo, $servicePromo) {
+function trouverPromo($nomPromo, $servicePromo,$mode) {
     $donnee = include __DIR__ . Chemins::Model->value;
     $database = $donnee['database'];
 
@@ -123,11 +123,10 @@ function trouverPromo($nomPromo, $servicePromo) {
     }
     
 
-    $grillePromotion = include __DIR__ . Chemins::Promotion->value;
-    $layout = include __DIR__ . Chemins::Layout->value;
 
 
-    echo $layout($grillePromotion($data));
+
+    echo $mode($data);
 
 
 }
@@ -165,16 +164,21 @@ function affichageListe(array $servicePromo){
         'totalPages' => $totalPages,
         'pageActuelle' => $page,
     ];
-    $ListePromotion = include __DIR__ . Chemins::PromotionListe->value;
+   
     
 
+    $ListePromotion = include __DIR__ . Chemins::PromotionListe->value;
+   
 
     echo  $ListePromotion($data);
 }
 
+$grillePromoti= include __DIR__ . Chemins::Promotion->value;
+$layout = include __DIR__ . Chemins::Layout->value;
 
+$grillePromotion=fn($data)=>$layout($grillePromoti($data));
 
-
+$ListePromotion = include __DIR__ . Chemins::PromotionListe->value;
 
 
 return [
@@ -191,7 +195,11 @@ return [
         affichageListe($servicePromo);
     },
 
-    'trouverPromo'=>function($nomPromo) use ($servicePromo) {
-       return trouverPromo($nomPromo, $servicePromo);
-    }
+    'trouverPromoGrille'=>function($nomPromo) use ($servicePromo,$grillePromotion) {
+       return trouverPromo($nomPromo, $servicePromo, $grillePromotion);
+    },
+
+    'trouverPromoListe'=>function($nomPromo) use ($servicePromo,$ListePromotion) {
+        return trouverPromo($nomPromo, $servicePromo, $ListePromotion);
+     }
 ];

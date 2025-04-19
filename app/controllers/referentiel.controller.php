@@ -24,7 +24,7 @@ function affichageRef(): void
     echo $layout($ref($infoRef));
 }
 
-
+        
 return [
     'affichageRef' => 'App\Controllers\affichageRef',
 ];

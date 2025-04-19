@@ -13,7 +13,7 @@ $routes = [
         $recherche = $_GET['recherche'] ?? '';
 
         if (!empty($recherche)) {
-            $promotionController['trouverPromo']($recherche);
+            $promotionController['trouverPromoGrille']($recherche);
         } else {
             $promotionController['affichageAllPromo']();
         }
@@ -21,8 +21,13 @@ $routes = [
 
 
     '/promotion/liste' => function() use ($promotionController) {
-        
-        $promotionController['affichageListe']();
+        $recherche = $_GET['recherche'] ?? '';
+
+        if (!empty($recherche)) {
+                $promotionController['trouverPromoListe']($recherche);
+        } else {
+            $promotionController['affichageListe']();
+        }
     },
 
 
