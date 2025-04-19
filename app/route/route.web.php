@@ -8,7 +8,18 @@ $referentielController = require __DIR__ . Chemins::RefController->value;
 $authController = require __DIR__ . Chemins::Controller->value;
 
 $routes = [
-    '/promotion' => $promotionController['affichageAllPromo'],
+    '/promotion' => function() use ($promotionController) {
+        
+        $recherche = $_GET['recherche'] ?? '';
+
+        if (!empty($recherche)) {
+            $promotionController['trouverPromo']($recherche, $promotionController);
+        } else {
+            $promotionController['affichageAllPromo']();
+        }
+    },
+
+
 
     '/promotion/ajout' => function() use ($promotionController) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,6 +32,9 @@ $routes = [
             );
         }
     },
+
+
+
 
     '/referentiels' => $referentielController['affichageRef'],
 

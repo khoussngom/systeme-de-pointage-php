@@ -59,14 +59,25 @@ return function ($data) {
 
             <div class="Cherche">
                 <div class="search1">
-                    <form action="" method="get">
-                        <input type="text" name="recherche" placeholder="Rechercher">
+                    <form id="form-recherche" action="?" method="get">
+                        <input type="text" name="recherche" placeholder="Rechercher" value="<?= isset($_GET['recherche']) ? htmlspecialchars($_GET['recherche']) : '' ?>">
                     </form>
                 </div>
-                <div class="filtre1">
+
+                <div class="filtre1" id="btn-recherche">
                     <div>Tous</div>
-                    <div class="v">v</div>
+                    <div class="v">
+                        <i class="fas fa-chevron-down"></i> 
+                    </div>
                 </div>
+
+                <script>
+                    document.getElementById('btn-recherche').addEventListener('click', function() {
+                        document.getElementById('form-recherche').submit();
+                    });
+                </script>
+
+
                 <div class="Gril">Grille</div>
                 <div class="Liste1">Liste</div>
             </div>

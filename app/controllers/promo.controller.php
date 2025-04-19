@@ -9,8 +9,6 @@ $servicePromo = include __DIR__ . Chemins::ServicePromo->value;
 $validator = include __DIR__ . Chemins::Validator->value;
 
 function redirectionPromo(string $path): void {
- 
-
     header("Location:/" . $path);
     exit;
 }
@@ -21,7 +19,7 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
     $databaseFile = $donnee['databaseFile'];
 
     session_start();
-  
+
 
     $nomPromo = $params['nomPromo'] ?? '';
     $dateDebut = $params['dateDebut'] ?? '';
@@ -37,7 +35,7 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
 
     array_walk($erreurs, function($message, $condition) {
         if ($condition) {
-            $_SESSION['form_message'] = $message;
+            $_SESSION['message'] = $message;
             redirectionPromo("promotion#form-popup");
         }
     });
@@ -55,7 +53,7 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
 
     if ($servicePromo['ajouterPromo']($database, $nomPromo, $dateDebut, $dateFin, $referentiel, $photoPromoPath)) {
         file_put_contents($databaseFile, json_encode($database, JSON_PRETTY_PRINT));
-        $_SESSION['form_message'] = Textes::AjoutSuccess->value;
+        $_SESSION['message'] = Textes::AjoutSuccess->value;
         redirectionPromo("promotion");
     }
 }
@@ -82,7 +80,7 @@ function affichageAllPromo(array $servicePromo): void {
 
     $offset = ($page - 1) * $perPage;
     $promotionsPage = array_slice($promotions, $offset, $perPage);
-   
+
 
     $data = [
         'Promotion' => $promotionsPage,
@@ -99,12 +97,51 @@ function affichageAllPromo(array $servicePromo): void {
     echo $layout($grillePromotion($data));
 }
 
+function trouverPromo($nomPromo, $servicePromo) {
+    $donnee = include __DIR__ . Chemins::Model->value;
+    $database = $donnee['database'];
+
+    $promoCherchee = $servicePromo['chercherPromo'](database: $database, nomPromo: $nomPromo);
+
+    if ($promoCherchee) {
+        $data = [
+            'Promotion' => $promoCherchee,
+            'nbrRef' => $servicePromo['nbrFilieres']($database),
+            'nbrProm' => $servicePromo['nbrPromo']($database),
+            'nbrAppr' => $servicePromo['nbrAppr']($database),
+            'totalPages' => $totalPages,
+            'pageActuelle' => $page,
+        ];
+    } else {
+        $data = [
+            'Promotion' => null,
+            'message' => 'Aucune promotion trouvée pour ce terme de recherche.'
+        ];
+    }
+
+    $grillePromotion = include __DIR__ . Chemins::Promotion->value;
+    $layout = include __DIR__ . Chemins::Layout->value;
+
+
+    echo $layout($grillePromotion($data));
+
+
+}
+
+
+
+
+
 
 return [
     'ajoutPromo' => function(array $params) use ($validator, $servicePromo) {
         ajoutPromo($params, $validator, $servicePromo);
     },
     'affichageAllPromo' => function() use ($servicePromo) {
+
         affichageAllPromo($servicePromo);
     },
+    'trouverPromo'=>function($nomPromo) use ($servicePromo) {
+       return trouverPromo($nomPromo, $servicePromo);
+    }
 ];
