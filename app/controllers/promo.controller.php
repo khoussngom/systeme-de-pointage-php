@@ -59,7 +59,6 @@ function ajoutPromo(array $params, array $validator, array $servicePromo): void 
         redirectionPromo("promotion");
     }
 }
-
 function affichageAllPromo(array $servicePromo): void {
     $donnee = include __DIR__ . Chemins::Model->value;
     $database = $donnee['database'];
@@ -72,11 +71,26 @@ function affichageAllPromo(array $servicePromo): void {
             !empty($promo['MatriculePromo']) && !empty($promo['filiere']) && !empty($promo['photoPromo']) && !empty($promo['debut']) && !empty($promo['fin']);
     });
 
+
+    $promotions = array_values($promotions); 
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+    $perPage = 6; 
+
+    $totalPromotions = count($promotions);
+    $totalPages = ceil($totalPromotions / $perPage);
+
+    $offset = ($page - 1) * $perPage;
+    $promotionsPage = array_slice($promotions, $offset, $perPage);
+   
+
     $data = [
-        'Promotion' => array_values($promotions),
+        'Promotion' => $promotionsPage,
         'nbrRef' => $servicePromo['nbrFilieres']($database),
         'nbrProm' => $servicePromo['nbrPromo']($database),
         'nbrAppr' => $servicePromo['nbrAppr']($database),
+        'totalPages' => $totalPages,
+        'pageActuelle' => $page,
     ];
 
     $grillePromotion = include __DIR__ . Chemins::Promotion->value;
